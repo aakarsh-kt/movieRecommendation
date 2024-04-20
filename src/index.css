@@ -80,7 +80,8 @@ button:focus-visible {
   /* margin-top: 300px; */
 }
 .flex--width{
-  width: 100vw;
+  flex: 1;
+  width: 70vw;
 }
 .flex--gap{
   gap:10px;
@@ -88,6 +89,10 @@ button:focus-visible {
 .navbar--list{
   display: flex;
   justify-content: space-evenly;
+}
+.select{
+
+  border-radius: 5%;
 }
 .navbar--cont{
   width: 100vw;
@@ -107,5 +112,6 @@ button:focus-visible {
 }
 .form{
   /* color:white; */
+  width: 70vw;
   background-color: #ffffff;
 }
