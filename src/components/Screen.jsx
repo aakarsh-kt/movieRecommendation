@@ -19,10 +19,10 @@ export default function () {
   const [error, setError] = React.useState("");
   const [choice, setChoice] = React.useState("");
   const [subChoice, setSubChoice] = React.useState("");
-  const subChoices1 = ["svm", "Naive Bayes"];
-  const [subsubchoice, setSubsubChoice] = React.useState("");
-  const moreSubChoices1 = ["Linear", "Polynomial", "RBF"];
-  const subChoices2 = ["knn", "kmeans", "LR"];
+  const subChoices1 = ["svm_linear","svm_polynomial","svm_rbf", "naive_bayes"];
+//   const [subsubchoice, setSubsubChoice] = React.useState("");
+//   const moreSubChoices1 = ["Linear", "Polynomial", "RBF"];
+  const subChoices2 = ["knn", "kmeans", "logistic_regression","random_forest","svd"];
   const fetchRecommendations = (model) => {
     fetch(
       `http://localhost:5000/recommend?movie=${encodeURIComponent(
@@ -83,19 +83,19 @@ export default function () {
     console.log(event.target.value);
     setSubChoice(event.target.value);
   }
-  function handleSubSubChange(event) {
-    console.log(event.target.value);
-    setSubsubChoice(event.target.value);
-  }
+//   function handleSubSubChange(event) {
+//     console.log(event.target.value);
+//     setSubsubChoice(event.target.value);
+//   }
   function handleApply() {
     setCurrModel(subChoice);
-    if (subChoice === "svm" && subsubchoice === "Linear") {
-      setCurrModel("svm_linear");
-    } else if (subChoice === "SVM" && subsubchoice === "Polynomial") {
-      setCurrModel("SVM_Polynomial");
-    } else if (subChoice === "SVM" && subsubchoice === "RBF") {
-      setCurrModel("SVM_RBF");
-    }
+    // if (subChoice === "svm" && subsubchoice === "Linear") {
+    //   setCurrModel("svm_linear");
+    // } else if (subChoice === "SVM" && subsubchoice === "Polynomial") {
+    //   setCurrModel("SVM_Polynomial");
+    // } else if (subChoice === "SVM" && subsubchoice === "RBF") {
+    //   setCurrModel("SVM_RBF");
+    // }
     console.log(currModel);
   }
   function SubChoice1() {
@@ -110,8 +110,10 @@ export default function () {
             label="Choose"
             onChange={handleSubChange}
           >
-            <MenuItem value={subChoices1[0]}>SVM</MenuItem>
-            <MenuItem value={subChoices1[1]}>Naive Bayes</MenuItem>
+            <MenuItem value={subChoices1[0]}>SVM Linear</MenuItem>
+            <MenuItem value={subChoices1[1]}>SVM Polynomial</MenuItem>
+            <MenuItem value={subChoices1[2]}>SVM RBF</MenuItem>
+            <MenuItem value={subChoices1[3]}>Naive Bayes</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -132,33 +134,35 @@ export default function () {
           >
             <MenuItem value={subChoices2[0]}>KNN</MenuItem>
             <MenuItem value={subChoices2[1]}>KMeans</MenuItem>
-            <MenuItem value={subChoices2[2]}>LR</MenuItem>
+            <MenuItem value={subChoices2[2]}>Logistic Regression</MenuItem>
+            <MenuItem value={subChoices2[3]}>Random Forest</MenuItem>
+            <MenuItem value={subChoices2[4]}>SVD</MenuItem>
           </Select>
         </FormControl>
       </div>
     );
   }
-  function SubChoice3() {
-    // const [moreSubChoice, setMoreSubChoice] = React.useState(["KNN"]);
-    return (
-      <div>
-        <FormControl fullWidth className="form select">
-          <InputLabel>Choose</InputLabel>
-          <Select
-            //   labelId="demo-simple-select-label"
-            //   id="demo-simple-select"
-            value={subsubchoice}
-            label="Choose"
-            onChange={handleSubSubChange}
-          >
-            <MenuItem value={moreSubChoices1[0]}>Linear</MenuItem>
-            <MenuItem value={moreSubChoices1[1]}>Polynomial</MenuItem>
-            <MenuItem value={moreSubChoices1[2]}>RBF</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-    );
-  }
+//   function SubChoice3() {
+//     // const [moreSubChoice, setMoreSubChoice] = React.useState(["KNN"]);
+//     return (
+//       <div>
+//         <FormControl fullWidth className="form select">
+//           <InputLabel>Choose</InputLabel>
+//           <Select
+//             //   labelId="demo-simple-select-label"
+//             //   id="demo-simple-select"
+//             value={subsubchoice}
+//             label="Choose"
+//             onChange={handleSubSubChange}
+//           >
+//             <MenuItem value={moreSubChoices1[0]}>Linear</MenuItem>
+//             <MenuItem value={moreSubChoices1[1]}>Polynomial</MenuItem>
+//             <MenuItem value={moreSubChoices1[2]}>RBF</MenuItem>
+//           </Select>
+//         </FormControl>
+//       </div>
+//     );
+//   }
   return (
     <div className="flex--column flex--gap">
       <TextField
@@ -191,7 +195,7 @@ export default function () {
         {choice === "Content Based Filtering" && <SubChoice1 />}
         {choice === "Collabrative Filtering" && <SubChoice2 />}
 
-        {subChoice === "svm" && <SubChoice3 />}
+        {/* {subChoice === "svm" && <SubChoice3 />} */}
       </div>
       <Button type="primary" onClick={handleApply}>
         Apply

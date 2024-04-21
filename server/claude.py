@@ -10,8 +10,10 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
+from flask_cors import CORS
 import numpy as np
 app = Flask(__name__)
+CORS(app)
 
 # Load Data
 movies = pd.read_csv('https://raw.githubusercontent.com/Rakshitx1/Movie-Recomendation-System/master/Dataset/movies.csv')
