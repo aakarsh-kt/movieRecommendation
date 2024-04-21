@@ -22,6 +22,10 @@ jobs:
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
+<<<<<<< HEAD
           NETLIFY_AUTH_TOKEN: nfp_4uePGQndSUBhqDbGajeHh7cmjqfdDjVV6bde
+=======
+          NETLIFY_AUTH_TOKEN:  nfp_4uePGQndSUBhqDbGajeHh7cmjqfdDjVV6bde
+>>>>>>> d86edbddfcdb1cfc68e227798a60271a6450e656
           NETLIFY_SITE_ID: 3df0c8e9-dc80-4b50-9bc6-fe78a7eb4266
         timeout-minutes: 1
